@@ -10,11 +10,15 @@ import SwiftData
 
 struct NewsView: View {
     
-    @Query private var articles: [ArticleEntity]
+    @State private var viewModel: NewsViewModel
+    
+    init(viewModel: NewsViewModel) {
+        _viewModel = State(initialValue: viewModel)
+    }
     
     var body: some View {
         NavigationStack {
-            List(articles) { article in
+            List(viewModel.articles) { article in
                 VStack(alignment: .leading) {
                     Text(article.title)
                         .font(.headline)
@@ -24,10 +28,13 @@ struct NewsView: View {
                 }
             }
             .navigationTitle("Pulse")
+            .task {
+                viewModel.loadArticles()
+            }
         }
     }
 }
 
 #Preview {
-    NewsView()
+    PulseRootView()
 }

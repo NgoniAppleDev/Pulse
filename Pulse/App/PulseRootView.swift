@@ -11,13 +11,19 @@ import SwiftData
 struct PulseRootView: View {
     
     @Environment(\.modelContext) private var modelContext
+    
     @Query private var articles: [ArticleEntity]
     
     var body: some View {
-        NewsView()
-            .task {
-                seedIfNeeded()
-            }
+        
+        let container = DependencyContainer(context: modelContext)
+        
+        NewsView(
+            viewModel: .init(fetchArticlesUseCase: container.fetchArticlesUseCase)
+        )
+        .task {
+            seedIfNeeded()
+        }
     }
     
     private func seedIfNeeded() {
