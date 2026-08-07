@@ -8,32 +8,43 @@
 import Foundation
 import Observation
 
-@Observable
+@MainActor @Observable
 final class NewsViewModel {
-    
-    private let fetchArticlesUseCase: FetchArticlesUseCase
     
     var articles: [Article] = []
     
-    var errorMessage: String?
+    private let fetchArticlesUseCase: FetchArticlesUseCase
+    private let repository: ArticleRepository
     
-    init(fetchArticlesUseCase: FetchArticlesUseCase) {
+    init(fetchArticlesUseCase: FetchArticlesUseCase, repository: ArticleRepository) {
         self.fetchArticlesUseCase = fetchArticlesUseCase
+        self.repository = repository
     }
     
-    func loadArticles() {
+    
+    func load() async {
         
         do {
-            articles = try fetchArticlesUseCase.execute()
+            articles =
+            try await fetchArticlesUseCase.execute()
             
-            Task {
-                try await fetchArticlesUseCase.refresh()
-                articles = try fetchArticlesUseCase.execute()
-            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    func refresh() async {
+        
+        do {
+            
+            try await repository.refresh()
+            
+            await load()
             
         } catch {
             
-            errorMessage = error.localizedDescription
+            print(error)
         }
     }
 }

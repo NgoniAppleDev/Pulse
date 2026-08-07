@@ -19,24 +19,16 @@ final class SwiftDataArticleRepository: ArticleRepository {
         self.api = api
     }
     
-    func fetchArticles() throws -> [Article] {
+    func fetchArticles() async throws -> [Article] {
         
         let descriptor = FetchDescriptor<ArticleEntity>(
-            sortBy: [ SortDescriptor(\.publishedAt, order: .reverse) ]
+            sortBy: [SortDescriptor(\.publishedAt, order: .reverse)]
         )
         
-        return try context.fetch(descriptor).map { entity in
-            Article(
-                id: entity.uuid,
-                title: entity.title,
-                description: entity.articleDescription,
-                imageURL: URL(string: entity.imageURL ?? ""),
-                articleURL: URL(string: entity.articleURL)!,
-                source: entity.source,
-                language: entity.language,
-                categories: entity.categories.map { $0.name },
-                publishedAt: entity.publishedAt
-            )
+        let entities = try context.fetch(descriptor)
+        
+        return entities.map {
+            makeDomainArticle(from: $0)
         }
     }
 
