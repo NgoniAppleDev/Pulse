@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct ArticleDTO: Identifiable {
-    
-    let id = UUID()
+struct ArticleDTO: Decodable {
     
     let uuid: String
     
@@ -25,7 +23,20 @@ struct ArticleDTO: Identifiable {
     
     let language: String
     
-    let category: String
+    let categories: [String]
     
     let publishedAt: Date
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case uuid
+        case title
+        case description
+        case imageURL = "image_url"
+        case url
+        case source
+        case language
+        case categories
+        case publishedAt = "published_at"
+    }
 }

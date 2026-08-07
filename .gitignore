@@ -30,3 +30,6 @@ fastlane/screenshots/
 
 # Logs
 *.log
+
+
+Config.xcconfig

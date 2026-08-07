@@ -22,15 +22,6 @@ struct PulseRootView: View {
             viewModel: .init(fetchArticlesUseCase: container.fetchArticlesUseCase)
         )
     }
-    
-    private func seedIfNeeded() {
-        
-        guard articles.isEmpty else {
-            return
-        }
-        
-        SeedData.insertArticles(into: modelContext)
-    }
 }
 
 #Preview {
