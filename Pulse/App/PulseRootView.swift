@@ -19,7 +19,10 @@ struct PulseRootView: View {
         let container = DependencyContainer(context: modelContext)
         
         NewsView(
-            viewModel: .init(fetchArticlesUseCase: container.fetchArticlesUseCase)
+            viewModel: .init(
+                fetchArticlesUseCase: container.fetchArticlesUseCase,
+                repository: container.articleRepository
+            )
         )
     }
 }

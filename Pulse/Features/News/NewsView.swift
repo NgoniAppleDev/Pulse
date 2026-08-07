@@ -29,7 +29,8 @@ struct NewsView: View {
             }
             .navigationTitle("Pulse")
             .task {
-                viewModel.loadArticles()
+                await viewModel.load()
+                await viewModel.refresh()
             }
         }
     }

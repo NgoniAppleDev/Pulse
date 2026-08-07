@@ -25,9 +25,7 @@ final class NewsViewModel {
     func load() async {
         
         do {
-            articles =
-            try await fetchArticlesUseCase.execute()
-            
+            articles = try await fetchArticlesUseCase.execute()
         } catch {
             print(error)
         }
