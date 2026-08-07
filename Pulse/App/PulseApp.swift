@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PulseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            
+            NewsView()
         }
+        .modelContainer(for: ArticleEntity.self)
     }
 }
