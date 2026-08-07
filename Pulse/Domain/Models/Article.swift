@@ -23,7 +23,7 @@ struct Article: Identifiable {
     
     let language: String
     
-    let category: String
+    let categories: [String]
     
     let publishedAt: Date
 }

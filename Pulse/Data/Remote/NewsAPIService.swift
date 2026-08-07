@@ -15,6 +15,7 @@ protocol NewsAPIService {
 struct MockNewsAPIService: NewsAPIService {
     
     func fetchArticles() async throws -> [ArticleDTO] {
+        
         [
             ArticleDTO(
                 uuid: "swift-concurrency-001",
@@ -24,7 +25,7 @@ struct MockNewsAPIService: NewsAPIService {
                 url: "https://example.com/swift",
                 source: "Apple",
                 language: "en",
-                category: "technology",
+                categories: ["technology"],
                 publishedAt: .now
             ),
             
@@ -36,7 +37,7 @@ struct MockNewsAPIService: NewsAPIService {
                 url: "https://example.com/ai",
                 source: "Tech News",
                 language: "en",
-                category: "technology",
+                categories: ["technology"],
                 publishedAt: .now
             )
         ]

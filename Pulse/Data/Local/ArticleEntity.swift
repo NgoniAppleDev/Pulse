@@ -13,17 +13,27 @@ final class ArticleEntity {
     
     @Attribute(.unique)
     var uuid: String
-    
     var title: String
     var articleDescription: String?
     var imageURL: String?
     var articleURL: String
     var source: String
     var language: String
-    var category: String
     var publishedAt: Date
     
-    init(uuid: String = UUID().uuidString, title: String, articleDescription: String? = nil, imageURL: String? = nil, articleURL: String, source: String, language: String, category: String, publishedAt: Date) {
+    @Relationship
+    var categories: [CategoryEntity] = []
+    
+    init(
+        uuid: String,
+        title: String,
+        articleDescription: String?,
+        imageURL: String?,
+        articleURL: String,
+        source: String,
+        language: String,
+        publishedAt: Date
+    ) {
         self.uuid = uuid
         self.title = title
         self.articleDescription = articleDescription
@@ -31,7 +41,6 @@ final class ArticleEntity {
         self.articleURL = articleURL
         self.source = source
         self.language = language
-        self.category = category
         self.publishedAt = publishedAt
     }
 }

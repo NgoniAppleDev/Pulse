@@ -10,21 +10,13 @@ import Foundation
 struct ArticleDTO: Decodable {
     
     let uuid: String
-    
     let title: String
-    
     let description: String?
-    
     let imageURL: String?
-    
     let url: String
-    
     let source: String
-    
     let language: String
-    
     let categories: [String]
-    
     let publishedAt: Date
     
     enum CodingKeys: String, CodingKey {
