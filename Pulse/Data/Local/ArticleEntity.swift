@@ -23,7 +23,7 @@ final class ArticleEntity {
     var category: String
     var publishedAt: Date
     
-    init(uuid: String, title: String, articleDescription: String? = nil, imageURL: String? = nil, articleURL: String, source: String, language: String, category: String, publishedAt: Date) {
+    init(uuid: String = UUID().uuidString, title: String, articleDescription: String? = nil, imageURL: String? = nil, articleURL: String, source: String, language: String, category: String, publishedAt: Date) {
         self.uuid = uuid
         self.title = title
         self.articleDescription = articleDescription

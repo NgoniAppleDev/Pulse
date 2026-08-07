@@ -13,7 +13,7 @@ struct PulseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NewsView()
+            PulseRootView()
         }
         .modelContainer(for: ArticleEntity.self)
     }
