@@ -18,7 +18,8 @@ final class DependencyContainer {
     
     init(context: ModelContext) {
         
-        let repository = SwiftDataArticleRepository(context: context)
+        let repository =
+        SwiftDataArticleRepository(context: context, api: MockNewsAPIService())
         
         self.articleRepository = repository
         

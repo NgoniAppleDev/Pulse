@@ -10,4 +10,6 @@ import Foundation
 protocol ArticleRepository {
     
     func fetchArticles() throws -> [Article]
+    
+    func refresh() async throws
 }

@@ -21,9 +21,6 @@ struct PulseRootView: View {
         NewsView(
             viewModel: .init(fetchArticlesUseCase: container.fetchArticlesUseCase)
         )
-        .task {
-            seedIfNeeded()
-        }
     }
     
     private func seedIfNeeded() {

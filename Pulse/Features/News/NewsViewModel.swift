@@ -25,8 +25,14 @@ final class NewsViewModel {
         
         do {
             articles = try fetchArticlesUseCase.execute()
-        }
-        catch {
+            
+            Task {
+                try await fetchArticlesUseCase.refresh()
+                articles = try fetchArticlesUseCase.execute()
+            }
+            
+        } catch {
+            
             errorMessage = error.localizedDescription
         }
     }

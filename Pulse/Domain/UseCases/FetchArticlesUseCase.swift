@@ -18,4 +18,8 @@ struct FetchArticlesUseCase {
     func execute() throws -> [Article] {
         try repository.fetchArticles()
     }
+    
+    func refresh() async throws {
+        try await repository.refresh()
+    }
 }
